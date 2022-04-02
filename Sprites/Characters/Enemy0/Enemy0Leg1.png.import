@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shuriken.png-000e3ae93918bce499a4bdbd1e717b48.stex"
+path="res://.import/Enemy0Leg1.png-bd522e3a758370f22a12eb11f3d8fdd6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Shuriken.png"
-dest_files=[ "res://.import/Shuriken.png-000e3ae93918bce499a4bdbd1e717b48.stex" ]
+source_file="res://Sprites/Characters/Enemy0/Enemy0Leg1.png"
+dest_files=[ "res://.import/Enemy0Leg1.png-bd522e3a758370f22a12eb11f3d8fdd6.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
