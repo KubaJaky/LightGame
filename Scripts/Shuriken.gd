@@ -27,4 +27,5 @@ func _on_LifeTime_timeout():
 func _on_Hit_body_entered(body):
 	if (body.is_in_group("Enemy")):
 		bodies_pierced += 1
+		body.damaged()
 		body.hp -= damage

@@ -3,7 +3,9 @@ extends KinematicBody2D
 onready var player = get_tree().get_root().get_node("Node2D/YSort/Player")
 onready var tower = get_tree().get_root().get_node("Node2D/YSort/Tower")
 onready var icon = $Icon
+onready var deadicon = $DeadIcon
 onready var anim = $Anim
+onready var damage_prtcl = $Damage
 
 var dead :bool = false
 
@@ -27,10 +29,13 @@ func _physics_process(delta):
 	if can_move == true:
 		velocity = move_and_slide(velocity)
 		
+	# Facing Left - Right
 	if tower.global_position.x < global_position.x and !icon.scale.x == -0.4:
 		icon.scale.x = -0.4
+		deadicon.scale.x = -1
 	elif tower.global_position.x >= global_position.x and !icon.scale.x == 0.4:
 		icon.scale.x = 0.4
+		deadicon.scale.x = 1
 		
 	if attacking and hp > 0:
 		tower.attacked = true
@@ -47,7 +52,7 @@ func _physics_process(delta):
 		
 func die():
 	if dead:
-		queue_free()
+		anim.play("Death")
 		
 func stop():
 	if attacking:
@@ -56,4 +61,11 @@ func stop():
 func _on_Damagedetect_body_entered(body):
 	if (body.is_in_group("Player")):
 		if body.character.dashing == true:
+			damaged()
 			hp -= 20
+
+
+func damaged():
+	damage_prtcl.restart()
+	damage_prtcl.emitting = true
+	
