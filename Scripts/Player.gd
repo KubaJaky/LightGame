@@ -15,6 +15,8 @@ var damage :int = 10
 var facing_right :bool = true
 var facing_left :bool = false
 
+export var on :bool = true
+
 
 func get_input():
 	velocity = Vector2()
@@ -65,6 +67,10 @@ func get_input():
 	move_and_slide(velocity)
 	
 
+func reset_move():
+	character.get_node("Walking").play("RESET")
+
 func _physics_process(delta):
-	get_input()
+	if on:
+		get_input()
 	

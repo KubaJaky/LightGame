@@ -17,4 +17,6 @@ func spawn():
 func _on_Cooldown_timeout():
 	if on:
 		spawn()
+		if $Cooldown.wait_time > 2:
+			$Cooldown.wait_time -= 0.15
 		$Cooldown.start()
