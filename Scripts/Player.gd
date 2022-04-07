@@ -58,9 +58,9 @@ func get_input():
 		velocity.x -= 1
 	
 	weapon.look_at(get_global_mouse_position())
-	
 	velocity = velocity.normalized() * speed
 	
+	# Skill
 	if (Input.is_action_just_pressed("Skill")):
 		character.Skill()
 		

@@ -3,7 +3,7 @@ extends StaticBody2D
 onready var towerAnim = get_node("TowerAnim")
 onready var deathscreenanim = get_tree().get_root().get_node("Node2D/DeathScreen/DeathScreenAnim")
 
-var power :int = 20
+var power :int = 0 # 2000 basic
 var attacked :bool = false
 var destroyed :bool = false
 
