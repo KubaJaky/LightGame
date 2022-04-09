@@ -2,10 +2,15 @@ extends StaticBody2D
 
 onready var towerAnim = get_node("TowerAnim")
 onready var deathscreenanim = get_tree().get_root().get_node("Node2D/DeathScreen/DeathScreenAnim")
+onready var save = get_tree().get_root().get_node("Node2D/Save")
 
 var power :int = 0 # 2000 basic
 var attacked :bool = false
 var destroyed :bool = false
+
+func _ready():
+	power = save.save.tower_hp
+	print(power)
 
 func _physics_process(delta):
 	if attacked and power > 0:
@@ -31,6 +36,10 @@ func _on_DamageArea_body_entered(body):
 		body.can_move = false
 		attacked = true
 		body.stop()
+		
+func BreakSound():
+	var soundID = int(rand_range(1,4))
+	get_node("GlassBreak"+str(soundID)).play()
 		
 func deathscreen():
 	deathscreenanim.play("DeathScreenClose")

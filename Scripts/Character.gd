@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var save = get_tree().get_root().get_node("Node2D/Save")
 onready var player = get_parent()
 onready var dash_timer = $DashTimer
 onready var skill_cd = $SkillCD
@@ -15,8 +16,16 @@ var can_dash :bool = true
 var dashing :bool = false
 var dash_speed :int = 500
 
+# Multiplayers for upgrades
+var dash_mult :float = 1
+var attack_spd_mult :float = 1
+
 func _ready():
 	player.throwable = load('res://Scenes/Shuriken.tscn')
+	dash_mult = save.save.skill_cd
+	attack_spd_mult = save.save.atk_spd
+	$SkillCD.wait_time = $SkillCD.wait_time * dash_mult
+	$AttackCD.wait_time = $AttackCD.wait_time * attack_spd_mult
 
 func _physics_process(delta):
 	look_at(global_position)

@@ -60,6 +60,9 @@ func die():
 	if dead:
 		anim.play("Death")
 		
+func add_kill():
+	player.kills += 1
+		
 func stop():
 	if attacking:
 		anim.play("RESET")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Sprites/Characters/Character0/Character0.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=2]
@@ -19,12 +19,35 @@
 [ext_resource path="res://Sprites/Tiles/Tile2v4.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/Tiles/Tile2v3.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/UI/Door.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/UI/Panel.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/UI/Panel2.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/UI/Plate.png" type="Texture" id=21]
 [ext_resource path="res://Sprites/UI/Wrench.png" type="Texture" id=22]
 [ext_resource path="res://Sprites/UI/CrystalBall.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/UI/Armory0.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/UI/Armory1.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Characters/Upgrader/UpgradingCharacter.png" type="Texture" id=26]
+[ext_resource path="res://Scripts/Lobby.gd" type="Script" id=27]
+[ext_resource path="res://Sprites/Particles/Triangle.png" type="Texture" id=28]
+[ext_resource path="res://Font/larabiefont rg.otf" type="DynamicFontData" id=29]
+[ext_resource path="res://Scenes/Save.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Sprites/UI/Icons/Skill_Cooldown.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/UI/Cent.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/UI/Icons/ATK_Speed.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/UI/Icons/DMG.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/UI/Icons/Movement_SPD.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/UI/Icons/Tower_Hp.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/UI/Icons/Money_Mult.png" type="Texture" id=37]
+[ext_resource path="res://Sounds/Swoosh/Swoosh1.wav" type="AudioStream" id=38]
+[ext_resource path="res://Sounds/Swoosh/Swoosh3.wav" type="AudioStream" id=39]
+[ext_resource path="res://Sounds/Swoosh/Swoosh2.wav" type="AudioStream" id=40]
+[ext_resource path="res://Sounds/Swoosh/Swoosh4.wav" type="AudioStream" id=41]
+[ext_resource path="res://Sounds/GlassBreak/GlassBreak1.wav" type="AudioStream" id=42]
+[ext_resource path="res://Sounds/GlassBreak/GlassBreak2.wav" type="AudioStream" id=43]
+[ext_resource path="res://Sounds/GlassBreak/GlassBreak3.wav" type="AudioStream" id=44]
+[ext_resource path="res://Sounds/DoorImpact.wav" type="AudioStream" id=45]
+[ext_resource path="res://Sounds/DoorTension.wav" type="AudioStream" id=46]
 
-[sub_resource type="TileSet" id=24]
+[sub_resource type="TileSet" id=1]
 0/name = "Tile1.png 0"
 0/texture = ExtResource( 15 )
 0/tex_offset = Vector2( 0, 0 )
@@ -133,13 +156,13 @@
 6/shapes = [  ]
 6/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 58, 20 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 134.183
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=4]
 resource_name = "Destroyed"
 length = 5.0
 tracks/0/type = "value"
@@ -257,15 +280,18 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 2, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "BreakSound"
+}, {
 "args": [  ],
 "method": "deathscreen"
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("LightTower:self_modulate")
@@ -372,8 +398,7 @@ tracks/8/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Visibility"
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("LightTower:self_modulate")
@@ -400,19 +425,19 @@ tracks/1/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Gradient" id=19]
+[sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 1, 0.921569, 0.407843, 1, 0.697754, 0.678982, 0.556023, 0.329412 )
 
-[sub_resource type="GradientTexture" id=20]
-gradient = SubResource( 19 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="Curve" id=21]
+[sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 0.826136 ), 0.0, 2.44475, 0, 0, Vector2( 1, 0 ), -0.640619, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=22]
-curve = SubResource( 21 )
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
 
-[sub_resource type="ParticlesMaterial" id=23]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 1
 emission_sphere_radius = 12.91
 flag_disable_z = true
@@ -425,34 +450,33 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
 scale_random = 0.4
-scale_curve = SubResource( 22 )
-color = Color( 1, 0.921569, 0.407843, 1 )
-color_ramp = SubResource( 20 )
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0.00621118, 0.397516 )
 colors = PoolColorArray( 0.164063, 0.164063, 0.164063, 0.823529, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=14]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.315217, 0.459091 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 14 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=16]
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
-scale_curve = SubResource( 9 )
-color_ramp = SubResource( 7 )
+scale_curve = SubResource( 15 )
+color_ramp = SubResource( 13 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=17]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("CharacterIcon/Character0Leg2:rotation_degrees")
@@ -515,7 +539,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=18]
 length = 1.8
 loop = true
 tracks/0/type = "bezier"
@@ -579,8 +603,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0.2, 0.5, 1.1, 1.5, 1.9 )
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "Attacking"
+[sub_resource type="Animation" id=19]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Weapon/WeaponIcon:position")
@@ -631,7 +654,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.1, 0.1 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=20]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Weapon/WeaponIcon:position")
@@ -682,10 +705,10 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 32.5, 37.5 )
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=22]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -700,8 +723,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=17]
-resource_name = "Spin"
+[sub_resource type="Animation" id=23]
 length = 7.0
 loop = true
 tracks/0/type = "value"
@@ -717,7 +739,22 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=35]
+resource_name = "ChangeShopArmory"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lobby:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1310, 0 ), Vector2( -1300, 0 ) ]
+}
+
+[sub_resource type="Animation" id=24]
 resource_name = "DeathScreenClose"
 length = 3.0
 tracks/0/type = "value"
@@ -796,8 +833,63 @@ tracks/6/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/7/type = "method"
+tracks/7/path = NodePath("../Save")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "BestScore"
+}, {
+"args": [  ],
+"method": "Coins"
+} ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("../YSort/Player")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "add_coins"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("DoorImpact:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("DoorTension:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=25]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:visible")
@@ -899,42 +991,142 @@ tracks/8/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("DoorImpact:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("DoorTension:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="StyleBoxTexture" id=26]
+texture = ExtResource( 20 )
+region_rect = Rect2( 0, 0, 1280, 720 )
 
 [sub_resource type="StyleBoxTexture" id=27]
-texture = ExtResource( 20 )
-region_rect = Rect2( 0, 0, 512, 256 )
-
-[sub_resource type="StyleBoxTexture" id=28]
 texture = ExtResource( 21 )
 region_rect = Rect2( 0, 0, 256, 256 )
 
-[sub_resource type="StyleBoxTexture" id=30]
+[sub_resource type="StyleBoxTexture" id=28]
 texture = ExtResource( 22 )
 region_rect = Rect2( 0, 0, 128, 128 )
 modulate_color = Color( 1, 0.686275, 0.686275, 1 )
 
-[sub_resource type="StyleBoxTexture" id=31]
+[sub_resource type="StyleBoxTexture" id=29]
 texture = ExtResource( 22 )
 region_rect = Rect2( 0, 0, 128, 128 )
 modulate_color = Color( 0.556863, 0.403922, 0.403922, 1 )
 
-[sub_resource type="StyleBoxTexture" id=29]
+[sub_resource type="StyleBoxTexture" id=30]
 texture = ExtResource( 22 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="StyleBoxTexture" id=32]
+[sub_resource type="StyleBoxTexture" id=31]
 texture = ExtResource( 23 )
 region_rect = Rect2( 0, 0, 128, 128 )
 modulate_color = Color( 0.917647, 0.509804, 1, 1 )
 
-[sub_resource type="StyleBoxTexture" id=33]
+[sub_resource type="StyleBoxTexture" id=32]
 texture = ExtResource( 23 )
 region_rect = Rect2( 0, 0, 128, 128 )
 modulate_color = Color( 0.596078, 0.423529, 0.615686, 1 )
 
-[sub_resource type="StyleBoxTexture" id=34]
+[sub_resource type="StyleBoxTexture" id=33]
 texture = ExtResource( 23 )
 region_rect = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="DynamicFont" id=41]
+size = 96
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=42]
+size = 64
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=44]
+size = 64
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxFlat" id=45]
+bg_color = Color( 0.168627, 0.168627, 0.168627, 0.843137 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.0117647, 0.0117647, 0.0117647, 0.843137 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=48]
+size = 64
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxTexture" id=34]
+texture = ExtResource( 24 )
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.109804, 0.109804, 0.113725, 0.737255 )
+
+[sub_resource type="DynamicFont" id=43]
+size = 32
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0.141176, 0.141176, 0.141176, 0.815686 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id=37]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 225, 225 )
+modulate_color = Color( 0.65098, 0.117647, 0.117647, 1 )
+
+[sub_resource type="StyleBoxTexture" id=39]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 225, 225 )
+modulate_color = Color( 1, 0.403922, 0.403922, 1 )
+
+[sub_resource type="DynamicFont" id=40]
+size = 64
+font_data = ExtResource( 29 )
 
 [node name="Node2D" type="Node2D"]
 __meta__ = {
@@ -945,7 +1137,7 @@ __meta__ = {
 position = Vector2( -414, 0 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -2
-tile_set = SubResource( 24 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 512, 512 )
 format = 1
 tile_data = PoolIntArray( -458763, 3, 0, -458762, 3, 0, -458761, 3, 0, -458760, 3, 0, -458759, 3, 0, -458758, 3, 0, -458757, 3, 0, -458756, 3, 0, -458755, 3, 0, -458754, 3, 0, -458753, 3, 0, -524288, 3, 0, -524287, 3, 0, -524286, 3, 0, -524285, 3, 0, -524284, 3, 0, -524283, 3, 0, -524282, 3, 0, -524281, 3, 0, -524280, 3, 0, -524279, 3, 0, -524278, 3, 0, -393227, 3, 0, -393226, 3, 0, -393225, 3, 0, -393224, 3, 0, -393223, 3, 0, -393222, 3, 0, -393221, 3, 0, -393220, 3, 0, -393219, 3, 0, -393218, 3, 0, -393217, 3, 0, -458752, 3, 0, -458751, 3, 0, -458750, 3, 0, -458749, 3, 0, -458748, 3, 0, -458747, 3, 0, -458746, 3, 0, -458745, 3, 0, -458744, 3, 0, -458743, 3, 0, -458742, 3, 0, -327691, 3, 0, -327690, 3, 0, -327689, 3, 0, -327688, 3, 0, -327687, 3, 0, -327686, 3, 0, -327685, 3, 0, -327684, 3, 0, -327683, 3, 0, -327682, 3, 0, -327681, 3, 0, -393216, 3, 0, -393215, 3, 0, -393214, 3, 0, -393213, 3, 0, -393212, 3, 0, -393211, 3, 0, -393210, 3, 0, -393209, 3, 0, -393208, 3, 0, -393207, 3, 0, -393206, 3, 0, -262155, 3, 0, -262154, 3, 0, -262153, 3, 0, -262152, 3, 0, -262151, 3, 0, -262150, 3, 0, -262149, 3, 0, -262148, 3, 0, -262147, 3, 0, -262146, 3, 0, -262145, 3, 0, -327680, 3, 0, -327679, 3, 0, -327678, 3, 0, -327677, 3, 0, -327676, 3, 0, -327675, 3, 0, -327674, 3, 0, -327673, 3, 0, -327672, 3, 0, -327671, 3, 0, -327670, 3, 0, -196619, 3, 0, -196618, 3, 0, -196617, 3, 0, -196616, 3, 0, -196615, 3, 0, -196614, 3, 0, -196613, 3, 0, -196612, 3, 0, -196611, 3, 0, -196610, 3, 0, -196609, 3, 0, -262144, 3, 0, -262143, 3, 0, -262142, 3, 0, -262141, 3, 0, -262140, 3, 0, -262139, 3, 0, -262138, 3, 0, -262137, 3, 0, -262136, 3, 0, -262135, 3, 0, -262134, 3, 0, -131083, 3, 0, -131082, 3, 0, -131081, 3, 0, -131080, 3, 0, -131079, 3, 0, -131078, 3, 0, -131077, 3, 0, -131076, 3, 0, -131075, 3, 0, -131074, 3, 0, -131073, 3, 0, -196608, 3, 0, -196607, 3, 0, -196606, 3, 0, -196605, 3, 0, -196604, 3, 0, -196603, 3, 0, -196602, 3, 0, -196601, 3, 0, -196600, 3, 0, -196599, 3, 0, -196598, 3, 0, -65547, 3, 0, -65546, 3, 0, -65545, 3, 0, -65544, 3, 0, -65543, 3, 0, -65542, 3, 0, -65541, 3, 0, -65540, 3, 0, -65539, 3, 0, -65538, 3, 0, -65537, 5, 0, -131072, 5, 0, -131071, 3, 0, -131070, 3, 0, -131069, 3, 0, -131068, 3, 0, -131067, 3, 0, -131066, 3, 0, -131065, 3, 0, -131064, 3, 0, -131063, 3, 0, -131062, 3, 0, -11, 3, 0, -10, 3, 0, -9, 3, 0, -8, 3, 0, -7, 3, 0, -6, 3, 0, -5, 3, 0, -4, 3, 0, -3, 3, 0, -2, 2, 0, -1, 1, 0, -65536, 1, 0, -65535, 4, 0, -65534, 3, 0, -65533, 3, 0, -65532, 3, 0, -65531, 3, 0, -65530, 3, 0, -65529, 3, 0, -65528, 3, 0, -65527, 3, 0, -65526, 3, 0, 65525, 3, 0, 65526, 3, 0, 65527, 3, 0, 65528, 3, 0, 65529, 3, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 2, 0, 65535, 1, 0, 0, 1, 0, 1, 4, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 131061, 3, 0, 131062, 3, 0, 131063, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 6, 0, 65536, 6, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 196597, 3, 0, 196598, 3, 0, 196599, 3, 0, 196600, 3, 0, 196601, 3, 0, 196602, 3, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0, 131082, 3, 0, 262133, 3, 0, 262134, 3, 0, 262135, 3, 0, 262136, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, 262141, 3, 0, 262142, 3, 0, 262143, 3, 0, 196608, 3, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 327669, 3, 0, 327670, 3, 0, 327671, 3, 0, 327672, 3, 0, 327673, 3, 0, 327674, 3, 0, 327675, 3, 0, 327676, 3, 0, 327677, 3, 0, 327678, 3, 0, 327679, 3, 0, 262144, 3, 0, 262145, 3, 0, 262146, 3, 0, 262147, 3, 0, 262148, 3, 0, 262149, 3, 0, 262150, 3, 0, 262151, 3, 0, 262152, 3, 0, 262153, 3, 0, 262154, 3, 0, 393205, 3, 0, 393206, 3, 0, 393207, 3, 0, 393208, 3, 0, 393209, 3, 0, 393210, 3, 0, 393211, 3, 0, 393212, 3, 0, 393213, 3, 0, 393214, 3, 0, 393215, 3, 0, 327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327687, 3, 0, 327688, 3, 0, 327689, 3, 0, 327690, 3, 0, 458741, 3, 0, 458742, 3, 0, 458743, 3, 0, 458744, 3, 0, 458745, 3, 0, 458746, 3, 0, 458747, 3, 0, 458748, 3, 0, 458749, 3, 0, 458750, 3, 0, 458751, 3, 0, 393216, 3, 0, 393217, 3, 0, 393218, 3, 0, 393219, 3, 0, 393220, 3, 0, 393221, 3, 0, 393222, 3, 0, 393223, 3, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 524277, 3, 0, 524278, 3, 0, 524279, 3, 0, 524280, 3, 0, 524281, 3, 0, 524282, 3, 0, 524283, 3, 0, 524284, 3, 0, 524285, 3, 0, 524286, 3, 0, 524287, 3, 0, 458752, 3, 0, 458753, 3, 0, 458754, 3, 0, 458755, 3, 0, 458756, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0, 458762, 3, 0, 589813, 3, 0, 589814, 3, 0, 589815, 3, 0, 589816, 3, 0, 589817, 3, 0, 589818, 3, 0, 589819, 3, 0, 589820, 3, 0, 589821, 3, 0, 589822, 3, 0, 589823, 3, 0, 524288, 3, 0, 524289, 3, 0, 524290, 3, 0, 524291, 3, 0, 524292, 3, 0, 524293, 3, 0, 524294, 3, 0, 524295, 3, 0, 524296, 3, 0, 524297, 3, 0, 524298, 3, 0, 655349, 3, 0, 655350, 3, 0, 655351, 3, 0, 655352, 3, 0, 655353, 3, 0, 655354, 3, 0, 655355, 3, 0, 655356, 3, 0, 655357, 3, 0, 655358, 3, 0, 655359, 3, 0, 589824, 3, 0, 589825, 3, 0, 589826, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 589830, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589834, 3, 0, 720885, 3, 0, 720886, 3, 0, 720887, 3, 0, 720888, 3, 0, 720889, 3, 0, 720890, 3, 0, 720891, 3, 0, 720892, 3, 0, 720893, 3, 0, 720894, 3, 0, 720895, 3, 0, 655360, 3, 0, 655361, 3, 0, 655362, 3, 0, 655363, 3, 0, 655364, 3, 0, 655365, 3, 0, 655366, 3, 0, 655367, 3, 0, 655368, 3, 0, 655369, 3, 0, 655370, 3, 0 )
@@ -963,12 +1155,12 @@ texture = ExtResource( 8 )
 
 [node name="Collision" type="CollisionShape2D" parent="YSort/Tower"]
 position = Vector2( 1, 4 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="DamageArea" type="Area2D" parent="YSort/Tower"]
 
 [node name="DamagfeAreaCollision" type="CollisionShape2D" parent="YSort/Tower/DamageArea"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="VisibilityArea" type="Area2D" parent="YSort/Tower"]
 
@@ -978,9 +1170,9 @@ position = Vector2( 3, -188.5 )
 polygon = PoolVector2Array( -38, 173.5, -32, 160.5, -71, 72.5, -46, -12.5, -35, -49.5, -6, -93.5, -36, -150.5, -35, -185.5, 4, -203.5, 39, -189.5, 51, -153.5, 20, -98.5, 46, -45.5, 23, 23.5, 106, 63.5, 20, 159.5, 32, 172.5, 20, 175.5, 5, 176.5, -14, 175.5, -25, 173.5 )
 
 [node name="TowerAnim" type="AnimationPlayer" parent="YSort/Tower"]
-anims/Destroyed = SubResource( 18 )
-anims/RESET = SubResource( 4 )
-anims/Visibility = SubResource( 5 )
+anims/Destroyed = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+anims/Visibility = SubResource( 6 )
 
 [node name="DestoryCam" type="Camera2D" parent="YSort/Tower"]
 position = Vector2( 4, -102 )
@@ -992,8 +1184,20 @@ amount = 18
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.83
-process_material = SubResource( 23 )
+process_material = SubResource( 11 )
 texture = ExtResource( 10 )
+
+[node name="GlassBreak1" type="AudioStreamPlayer" parent="YSort/Tower"]
+stream = ExtResource( 42 )
+volume_db = -10.0
+
+[node name="GlassBreak2" type="AudioStreamPlayer" parent="YSort/Tower"]
+stream = ExtResource( 43 )
+volume_db = -10.0
+
+[node name="GlassBreak3" type="AudioStreamPlayer" parent="YSort/Tower"]
+stream = ExtResource( 44 )
+volume_db = -10.0
 
 [node name="Player" type="KinematicBody2D" parent="YSort" groups=["Player"]]
 collision_layer = 2
@@ -1022,7 +1226,7 @@ emitting = false
 amount = 500
 lifetime = 1.5
 local_coords = false
-process_material = SubResource( 10 )
+process_material = SubResource( 16 )
 texture = ExtResource( 1 )
 
 [node name="Weapon" type="Node2D" parent="YSort/Player/Character0"]
@@ -1039,25 +1243,40 @@ wait_time = 0.1
 one_shot = true
 
 [node name="SkillCD" type="Timer" parent="YSort/Player/Character0"]
-wait_time = 2.0
+wait_time = 4.0
 one_shot = true
 
 [node name="AttackCD" type="Timer" parent="YSort/Player/Character0"]
-wait_time = 0.6
 
 [node name="Walking" type="AnimationPlayer" parent="YSort/Player/Character0"]
 playback_speed = 3.0
-anims/RESET = SubResource( 11 )
-anims/Walking = SubResource( 12 )
+anims/RESET = SubResource( 17 )
+anims/Walking = SubResource( 18 )
 
 [node name="Attacking" type="AnimationPlayer" parent="YSort/Player/Character0"]
 playback_speed = 0.5
-anims/Attacking = SubResource( 13 )
-anims/RESET = SubResource( 14 )
+anims/Attacking = SubResource( 19 )
+anims/RESET = SubResource( 20 )
+
+[node name="Attack1" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
+stream = ExtResource( 38 )
+volume_db = -10.0
+
+[node name="Attack2" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
+stream = ExtResource( 40 )
+volume_db = -10.0
+
+[node name="Attack3" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
+stream = ExtResource( 39 )
+volume_db = -10.0
+
+[node name="Attack4" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
+stream = ExtResource( 41 )
+volume_db = -10.0
 
 [node name="Collision" type="CollisionShape2D" parent="YSort/Player"]
 position = Vector2( -0.5, 1.5 )
-shape = SubResource( 15 )
+shape = SubResource( 21 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player"]
 current = true
@@ -1073,8 +1292,8 @@ position = Vector2( 0, -1348 )
 position = Vector2( 0, 1349 )
 
 [node name="Scramble" type="AnimationPlayer" parent="YSort/SpawnerScramble"]
-anims/RESET = SubResource( 16 )
-anims/Spin = SubResource( 17 )
+anims/RESET = SubResource( 22 )
+anims/Spin = SubResource( 23 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2( -404, -1222 )
@@ -1093,6 +1312,7 @@ __meta__ = {
 }
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]
+script = ExtResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="DeathScreen"]
 visible = false
@@ -1108,18 +1328,20 @@ texture = ExtResource( 19 )
 
 [node name="DeathScreenAnim" type="AnimationPlayer" parent="DeathScreen"]
 playback_speed = 1.5
-anims/DeathScreenClose = SubResource( 25 )
-anims/RESET = SubResource( 26 )
+anims/ChangeShopArmory = SubResource( 35 )
+anims/DeathScreenClose = SubResource( 24 )
+anims/RESET = SubResource( 25 )
 
 [node name="Lobby" type="CanvasLayer" parent="DeathScreen"]
 
 [node name="Panel" type="Panel" parent="DeathScreen/Lobby"]
 visible = false
-margin_left = -172.0
+margin_left = -152.0
 margin_top = -3.0
-margin_right = 1327.0
+margin_right = 1290.0
 margin_bottom = 728.0
-custom_styles/panel = SubResource( 27 )
+rect_pivot_offset = Vector2( 71, 1098 )
+custom_styles/panel = SubResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1130,20 +1352,21 @@ margin_top = 310.0
 margin_right = 1440.0
 margin_bottom = 551.0
 rect_scale = Vector2( 0.680427, 0.680427 )
-custom_styles/panel = SubResource( 28 )
+custom_styles/panel = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="DeathScreen/Lobby/Panel/Upgrades"]
+[node name="UpgradeButton" type="Button" parent="DeathScreen/Lobby/Panel/Upgrades"]
 margin_left = 1.0
 margin_top = 15.0
 margin_right = 223.0
 margin_bottom = 228.0
+rect_pivot_offset = Vector2( 171.549, 106.5 )
 focus_mode = 0
-custom_styles/hover = SubResource( 30 )
-custom_styles/pressed = SubResource( 31 )
-custom_styles/normal = SubResource( 29 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/normal = SubResource( 30 )
 action_mode = 0
 enabled_focus_mode = 0
 
@@ -1154,23 +1377,342 @@ margin_right = 492.0
 margin_bottom = 507.0
 rect_scale = Vector2( 0.682305, 0.682305 )
 rect_pivot_offset = Vector2( -25, 139 )
-custom_styles/panel = SubResource( 28 )
+custom_styles/panel = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="DeathScreen/Lobby/Panel/Characters"]
+[node name="SummonButton" type="Button" parent="DeathScreen/Lobby/Panel/Characters"]
 margin_left = 1.0
 margin_top = 15.0
 margin_right = 223.0
 margin_bottom = 228.0
-rect_pivot_offset = Vector2( 174, 402 )
+rect_pivot_offset = Vector2( 1934.43, 246.148 )
 focus_mode = 0
-custom_styles/hover = SubResource( 32 )
-custom_styles/pressed = SubResource( 33 )
-custom_styles/normal = SubResource( 34 )
+custom_styles/hover = SubResource( 31 )
+custom_styles/pressed = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
 action_mode = 0
 enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="DeathScreen/Lobby/Panel"]
+margin_left = 440.0
+margin_top = 95.0
+margin_right = 1030.0
+margin_bottom = 211.0
+custom_fonts/font = SubResource( 41 )
+text = "Score:9999"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="DeathScreen/Lobby/Panel"]
+margin_left = 529.0
+margin_top = 206.0
+margin_right = 1119.0
+margin_bottom = 322.0
+custom_fonts/font = SubResource( 42 )
+text = "Time: 999:99"
+align = 1
+
+[node name="Kills" type="Label" parent="DeathScreen/Lobby/Panel"]
+margin_left = 492.0
+margin_top = 283.0
+margin_right = 1082.0
+margin_bottom = 399.0
+custom_fonts/font = SubResource( 42 )
+text = "Kills: 99999"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BestScore" type="Label" parent="DeathScreen/Lobby/Panel"]
+margin_left = 449.0
+margin_top = 545.0
+margin_right = 1112.0
+margin_bottom = 661.0
+custom_fonts/font = SubResource( 42 )
+text = "Best Score: 99999"
+align = 1
+
+[node name="Retry" type="Button" parent="DeathScreen/Lobby/Panel"]
+margin_left = 830.0
+margin_top = 412.0
+margin_right = 1037.0
+margin_bottom = 495.0
+focus_mode = 0
+custom_colors/font_color = Color( 0.184314, 0.768627, 0.909804, 1 )
+custom_colors/font_color_hover = Color( 0.686275, 0.890196, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.105882, 0.521569, 0.898039, 1 )
+custom_fonts/font = SubResource( 44 )
+custom_styles/hover = SubResource( 45 )
+custom_styles/pressed = SubResource( 46 )
+custom_styles/normal = SubResource( 47 )
+text = "Retry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="DeathScreen/Lobby/Panel"]
+margin_left = 553.0
+margin_top = 412.0
+margin_right = 760.0
+margin_bottom = 495.0
+focus_mode = 0
+custom_colors/font_color = Color( 0.901961, 0.682353, 0.184314, 1 )
+custom_colors/font_color_hover = Color( 0.92334, 0.837622, 0.403961, 1 )
+custom_colors/font_color_pressed = Color( 0.849609, 0.548624, 0.142708, 1 )
+custom_fonts/font = SubResource( 44 )
+custom_styles/hover = SubResource( 45 )
+custom_styles/pressed = SubResource( 46 )
+custom_styles/normal = SubResource( 47 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="Label" parent="DeathScreen/Lobby/Panel"]
+margin_left = 1197.0
+margin_top = 110.0
+margin_right = 1431.0
+margin_bottom = 187.0
+rect_pivot_offset = Vector2( -177, 317 )
+custom_fonts/font = SubResource( 48 )
+text = "99999¢"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cent" type="Sprite" parent="DeathScreen/Lobby/Panel/Coins"]
+position = Vector2( -452, 797 )
+scale = Vector2( 2.51563, 2.51563 )
+texture = ExtResource( 32 )
+offset = Vector2( 155.826, -301.714 )
+
+[node name="Armory" type="Panel" parent="DeathScreen/Lobby"]
+margin_left = 1289.71
+margin_top = -7.0
+margin_right = 2591.71
+margin_bottom = 726.0
+rect_pivot_offset = Vector2( 114.9, 492.342 )
+custom_styles/panel = SubResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradingCharacter" type="Sprite" parent="DeathScreen/Lobby/Armory"]
+position = Vector2( 303.456, 482.303 )
+scale = Vector2( 1.966, 1.966 )
+texture = ExtResource( 26 )
+
+[node name="Armory1" type="Sprite" parent="DeathScreen/Lobby/Armory"]
+position = Vector2( 649.425, 370.892 )
+scale = Vector2( 1.01768, 1.01768 )
+texture = ExtResource( 25 )
+
+[node name="BuyMenu" type="Panel" parent="DeathScreen/Lobby/Armory"]
+margin_left = 713.036
+margin_top = 33.7818
+margin_right = 1249.04
+margin_bottom = 569.782
+custom_styles/panel = SubResource( 36 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuyAtkSpd" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
+margin_left = 89.254
+margin_top = 102.218
+margin_right = 161.254
+margin_bottom = 147.218
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
+custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/normal = SubResource( 50 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AtkSpdIcon" type="Sprite" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyAtkSpd"]
+position = Vector2( 37, -42 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 33 )
+
+[node name="BuyDmg" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
+margin_left = 237.254
+margin_top = 102.218
+margin_right = 309.254
+margin_bottom = 147.218
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
+custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/normal = SubResource( 50 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DmgIcon" type="Sprite" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyDmg"]
+position = Vector2( 37, -42 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 34 )
+
+[node name="BuySkillCd" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
+margin_left = 392.254
+margin_top = 102.218
+margin_right = 464.254
+margin_bottom = 147.218
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
+custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/normal = SubResource( 50 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillCdIcon" type="Sprite" parent="DeathScreen/Lobby/Armory/BuyMenu/BuySkillCd"]
+position = Vector2( 37, -42 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 31 )
+
+[node name="BuyMvnSpd" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
+margin_left = 84.254
+margin_top = 271.218
+margin_right = 156.254
+margin_bottom = 316.218
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
+custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/normal = SubResource( 50 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MvnSpdIcon" type="Sprite" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyMvnSpd"]
+position = Vector2( 37, -33.3998 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 35 )
+
+[node name="BuyMnyMult" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
+margin_left = 238.254
+margin_top = 271.218
+margin_right = 310.254
+margin_bottom = 316.218
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
+custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/normal = SubResource( 50 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MnyMultIcon" type="Sprite" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyMnyMult"]
+position = Vector2( 37, -33.3998 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 37 )
+
+[node name="BuyTwrHp" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
+margin_left = 389.254
+margin_top = 271.218
+margin_right = 461.254
+margin_bottom = 316.218
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
+custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
+custom_fonts/font = SubResource( 43 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/normal = SubResource( 50 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TwrHpIcon" type="Sprite" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyTwrHp"]
+position = Vector2( 37, -41.9998 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 36 )
+
+[node name="Back" type="Button" parent="DeathScreen/Lobby/Armory"]
+margin_left = 39.036
+margin_top = 673.782
+margin_right = 98.036
+margin_bottom = 737.782
+rect_rotation = -90.1346
+focus_mode = 0
+custom_styles/hover = SubResource( 37 )
+custom_styles/pressed = SubResource( 37 )
+custom_styles/normal = SubResource( 39 )
+action_mode = 0
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackText" type="Label" parent="DeathScreen/Lobby/Armory/Back"]
+margin_left = 68.6283
+margin_top = 65.4154
+margin_right = 224.628
+margin_bottom = 142.415
+rect_rotation = 89.7767
+custom_colors/font_color = Color( 1, 0.403922, 0.403922, 1 )
+custom_fonts/font = SubResource( 40 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins2" type="Label" parent="DeathScreen/Lobby/Armory"]
+margin_left = 836.29
+margin_top = 469.0
+margin_right = 1070.29
+margin_bottom = 546.0
+rect_pivot_offset = Vector2( -177, 317 )
+custom_fonts/font = SubResource( 48 )
+text = "99999¢"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cent" type="Sprite" parent="DeathScreen/Lobby/Armory/Coins2"]
+position = Vector2( -452, 797 )
+scale = Vector2( 2.51563, 2.51563 )
+texture = ExtResource( 32 )
+offset = Vector2( 155.826, -301.714 )
+
+[node name="DoorImpact" type="AudioStreamPlayer" parent="DeathScreen"]
+stream = ExtResource( 45 )
+volume_db = -7.0
+
+[node name="DoorTension" type="AudioStreamPlayer" parent="DeathScreen"]
+stream = ExtResource( 46 )
+volume_db = -7.0
+
+[node name="Save" parent="." instance=ExtResource( 30 )]
 
 [connection signal="body_entered" from="YSort/Tower/DamageArea" to="YSort/Tower" method="_on_DamageArea_body_entered"]
 [connection signal="body_entered" from="YSort/Tower/VisibilityArea" to="YSort/Tower" method="_on_VisibilityArea_body_entered"]
@@ -1178,3 +1720,11 @@ enabled_focus_mode = 0
 [connection signal="timeout" from="YSort/Player/Character0/DashTimer" to="YSort/Player/Character0" method="_on_DashTimer_timeout"]
 [connection signal="timeout" from="YSort/Player/Character0/SkillCD" to="YSort/Player/Character0" method="_on_SkillCD_timeout"]
 [connection signal="timeout" from="YSort/Player/Character0/AttackCD" to="YSort/Player/Character0" method="_on_AttackCD_timeout"]
+[connection signal="pressed" from="DeathScreen/Lobby/Panel/Upgrades/UpgradeButton" to="DeathScreen" method="_on_UpgradeButton_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyAtkSpd" to="DeathScreen" method="_on_BuyAtkSpd_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyDmg" to="DeathScreen" method="_on_BuyDmg_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuySkillCd" to="DeathScreen" method="_on_BuySkillCd_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyMvnSpd" to="DeathScreen" method="_on_BuyMvnSpd_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyMnyMult" to="DeathScreen" method="_on_BuyMnyMult_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyTwrHp" to="DeathScreen" method="_on_BuyTwrHp_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Armory/Back" to="DeathScreen" method="_on_Back_pressed"]

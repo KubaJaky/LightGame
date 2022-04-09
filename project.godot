@@ -120,6 +120,10 @@ window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot_editor_discord_presence/plugin.cfg" )
+
 [input]
 
 Up={

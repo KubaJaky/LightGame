@@ -21,6 +21,6 @@ func _on_Cooldown_timeout():
 	if on:
 		spawn()
 		$Cooldown.wait_time = rand_range(min_wait_time,min_wait_time+1)
-		if min_wait_time > 2:
-			min_wait_time -= 0.15
+		if min_wait_time > 1:
+			min_wait_time -= 0.1
 		$Cooldown.start()
