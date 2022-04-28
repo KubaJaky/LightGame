@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Swooshes, Whoosh, WInd, Cool, Short 03 SND55201 2.wav-09bff6930b1c6154ef0a8dc9d1db0025.sample"
+
+[deps]
+
+source_file="res://Sounds/MovementSpd/Swooshes, Whoosh, WInd, Cool, Short 03 SND55201 2.wav"
+dest_files=[ "res://.import/Swooshes, Whoosh, WInd, Cool, Short 03 SND55201 2.wav-09bff6930b1c6154ef0a8dc9d1db0025.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

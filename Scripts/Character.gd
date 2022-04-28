@@ -7,6 +7,9 @@ onready var skill_cd = $SkillCD
 onready var dash_particle = $dash_particle
 onready var attack_cd = $AttackCD
 onready var attack_anim = $Attacking
+onready var skill_sound = $Skill
+onready var skill_Cd = $SkillCD
+onready var atk_spd = $AttackCD
 
 var targetPosition :Vector2
 
@@ -17,15 +20,11 @@ var dashing :bool = false
 var dash_speed :int = 500
 
 # Multiplayers for upgrades
-var dash_mult :float = 1
+var skill_mult :float = 1
 var attack_spd_mult :float = 1
 
 func _ready():
 	player.throwable = load('res://Scenes/Shuriken.tscn')
-	dash_mult = save.save.skill_cd
-	attack_spd_mult = save.save.atk_spd
-	$SkillCD.wait_time = $SkillCD.wait_time * dash_mult
-	$AttackCD.wait_time = $AttackCD.wait_time * attack_spd_mult
 
 func _physics_process(delta):
 	look_at(global_position)
@@ -48,6 +47,7 @@ func Skill():
 		dash_particle.emitting = true
 		dashing = true
 		dash_timer.start()
+		skill_sound.play()
 		targetPosition = player.global_position + (player.velocity/player.base_speed) * dash_speed
 
 func _on_DashTimer_timeout():

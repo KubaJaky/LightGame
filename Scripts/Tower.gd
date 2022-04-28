@@ -8,10 +8,6 @@ var power :int = 0 # 2000 basic
 var attacked :bool = false
 var destroyed :bool = false
 
-func _ready():
-	power = save.save.tower_hp
-	print(power)
-
 func _physics_process(delta):
 	if attacked and power > 0:
 		power -= 0.01

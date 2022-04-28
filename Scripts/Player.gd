@@ -3,13 +3,14 @@ extends KinematicBody2D
 onready var character = get_child(0)
 onready var weapon = get_child(0).get_node("Weapon")
 onready var weaponIcon = get_child(0).get_node("Weapon/WeaponIcon")
+onready var appear_particle = get_child(0).get_node("Appear")
 onready var save = get_tree().get_root().get_node("Node2D/Save")
 onready var tower = get_tree().get_root().get_node("Node2D/YSort/Tower")
 var throwable
 
 var velocity = Vector2()
 
-var base_speed :int = 300
+var base_speed :int = 250
 var speed :int = base_speed
 var damage :int = 7
 
@@ -23,13 +24,14 @@ var kills :int = 0
 var score = 0
 
 var coins :int = 0
+var money_mult :float = 1.0
 
 func _ready():
-	coins = save.save.coins
-	base_speed = save.save.mvn_spd
-	damage = save.save.damage
-
-
+	var soundID = int(rand_range(1,3))
+	get_tree().get_root().get_node("Node2D/BGMusic"+str(soundID)).play()
+	appear_particle.restart()
+	appear_particle.emitting = true
+	
 func get_input():
 	velocity = Vector2()
 	
@@ -81,7 +83,8 @@ func get_input():
 	move_and_slide(velocity)
 	
 func add_coins():
-	coins += (int(score)/10)
+	coins += (int(score)/10) * money_mult
+	save.Coins()
 	
 func ShootSound():
 	var soundID = int(rand_range(1,5))

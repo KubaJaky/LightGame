@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://Sprites/Characters/Character0/Character0.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=2]
@@ -46,6 +46,16 @@
 [ext_resource path="res://Sounds/GlassBreak/GlassBreak3.wav" type="AudioStream" id=44]
 [ext_resource path="res://Sounds/DoorImpact.wav" type="AudioStream" id=45]
 [ext_resource path="res://Sounds/DoorTension.wav" type="AudioStream" id=46]
+[ext_resource path="res://Sprites/UI/PowerEmpty.png" type="Texture" id=47]
+[ext_resource path="res://Sprites/UI/PowerFull.png" type="Texture" id=48]
+[ext_resource path="res://Sprites/UI/Ch0SkillEmpty.png" type="Texture" id=49]
+[ext_resource path="res://Sprites/UI/Ch0Skill.png" type="Texture" id=50]
+[ext_resource path="res://Sounds/Ch0Skill.wav" type="AudioStream" id=51]
+[ext_resource path="res://Music/Twin Musicom - Rauchus.mp3" type="AudioStream" id=52]
+[ext_resource path="res://Music/Twin Musicom - Good for Nothing Safety.mp3" type="AudioStream" id=53]
+[ext_resource path="res://Music/Twin Musicom - Training in the Fire.mp3" type="AudioStream" id=54]
+[ext_resource path="res://Sounds/Click.wav" type="AudioStream" id=55]
+[ext_resource path="res://Sounds/Click2.wav" type="AudioStream" id=56]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tile1.png 0"
@@ -254,10 +264,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, false ]
 }
 tracks/8/type = "method"
 tracks/8/path = NodePath("../Player")
@@ -289,6 +299,54 @@ tracks/9/keys = {
 "args": [  ],
 "method": "deathscreen"
 } ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../../BGMusic1:volume_db")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -70.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../../BGMusic2:volume_db")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -70.0 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("../../BGMusic1:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("../../BGMusic2:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -397,6 +455,54 @@ tracks/8/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("../../BGMusic1:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -10.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../../BGMusic2:volume_db")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -10.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../../BGMusic1:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("../../BGMusic2:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.5
@@ -457,13 +563,13 @@ color_ramp = SubResource( 8 )
 offsets = PoolRealArray( 0.00621118, 0.397516 )
 colors = PoolColorArray( 0.164063, 0.164063, 0.164063, 0.823529, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=13]
+[sub_resource type="GradientTexture" id=60]
 gradient = SubResource( 12 )
 
 [sub_resource type="Curve" id=14]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.315217, 0.459091 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=15]
+[sub_resource type="CurveTexture" id=61]
 curve = SubResource( 14 )
 
 [sub_resource type="ParticlesMaterial" id=16]
@@ -473,8 +579,8 @@ gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
-scale_curve = SubResource( 15 )
-color_ramp = SubResource( 13 )
+scale_curve = SubResource( 61 )
+color_ramp = SubResource( 60 )
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -705,6 +811,34 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ) ]
 }
 
+[sub_resource type="Gradient" id=54]
+offsets = PoolRealArray( 0, 0.565217, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.937255, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=62]
+gradient = SubResource( 54 )
+
+[sub_resource type="Curve" id=56]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.934783, 0.0011363 ), -0.87702, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=63]
+curve = SubResource( 56 )
+
+[sub_resource type="ParticlesMaterial" id=53]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 90.0
+gravity = Vector3( 0, 150, 0 )
+initial_velocity = 140.0
+initial_velocity_random = 0.1
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+scale_curve = SubResource( 63 )
+color_ramp = SubResource( 62 )
+
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 32.5, 37.5 )
 
@@ -738,6 +872,140 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+
+[sub_resource type="DynamicFont" id=51]
+size = 128
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=52]
+size = 86
+outline_size = 8
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxTexture" id=26]
+texture = ExtResource( 20 )
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[sub_resource type="StyleBoxTexture" id=27]
+texture = ExtResource( 21 )
+region_rect = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="StyleBoxTexture" id=28]
+texture = ExtResource( 22 )
+region_rect = Rect2( 0, 0, 128, 128 )
+modulate_color = Color( 1, 0.686275, 0.686275, 1 )
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 22 )
+region_rect = Rect2( 0, 0, 128, 128 )
+modulate_color = Color( 0.556863, 0.403922, 0.403922, 1 )
+
+[sub_resource type="StyleBoxTexture" id=30]
+texture = ExtResource( 22 )
+region_rect = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="StyleBoxTexture" id=31]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 128, 128 )
+modulate_color = Color( 0.917647, 0.509804, 1, 1 )
+
+[sub_resource type="StyleBoxTexture" id=32]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 128, 128 )
+modulate_color = Color( 0.596078, 0.423529, 0.615686, 1 )
+
+[sub_resource type="StyleBoxTexture" id=33]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="DynamicFont" id=41]
+size = 96
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=42]
+size = 64
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=44]
+size = 64
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxFlat" id=45]
+bg_color = Color( 0.168627, 0.168627, 0.168627, 0.843137 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.0117647, 0.0117647, 0.0117647, 0.843137 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=48]
+size = 64
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxTexture" id=34]
+texture = ExtResource( 24 )
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.109804, 0.109804, 0.113725, 0.737255 )
+
+[sub_resource type="DynamicFont" id=43]
+size = 32
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0.141176, 0.141176, 0.141176, 0.815686 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=58]
+bg_color = Color( 0, 0, 0, 0.4 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=59]
+size = 32
+font_data = ExtResource( 29 )
+
+[sub_resource type="StyleBoxTexture" id=37]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 225, 225 )
+modulate_color = Color( 0.65098, 0.117647, 0.117647, 1 )
+
+[sub_resource type="StyleBoxTexture" id=39]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 225, 225 )
+modulate_color = Color( 1, 0.403922, 0.403922, 1 )
+
+[sub_resource type="DynamicFont" id=40]
+size = 64
+font_data = ExtResource( 29 )
 
 [sub_resource type="Animation" id=35]
 resource_name = "ChangeShopArmory"
@@ -840,14 +1108,11 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "BestScore"
-}, {
-"args": [  ],
-"method": "Coins"
 } ]
 }
 tracks/8/type = "method"
@@ -887,6 +1152,18 @@ tracks/10/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("LobbyMusic:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 2.9, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -1015,118 +1292,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [ false ]
 }
-
-[sub_resource type="StyleBoxTexture" id=26]
-texture = ExtResource( 20 )
-region_rect = Rect2( 0, 0, 1280, 720 )
-
-[sub_resource type="StyleBoxTexture" id=27]
-texture = ExtResource( 21 )
-region_rect = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="StyleBoxTexture" id=28]
-texture = ExtResource( 22 )
-region_rect = Rect2( 0, 0, 128, 128 )
-modulate_color = Color( 1, 0.686275, 0.686275, 1 )
-
-[sub_resource type="StyleBoxTexture" id=29]
-texture = ExtResource( 22 )
-region_rect = Rect2( 0, 0, 128, 128 )
-modulate_color = Color( 0.556863, 0.403922, 0.403922, 1 )
-
-[sub_resource type="StyleBoxTexture" id=30]
-texture = ExtResource( 22 )
-region_rect = Rect2( 0, 0, 128, 128 )
-
-[sub_resource type="StyleBoxTexture" id=31]
-texture = ExtResource( 23 )
-region_rect = Rect2( 0, 0, 128, 128 )
-modulate_color = Color( 0.917647, 0.509804, 1, 1 )
-
-[sub_resource type="StyleBoxTexture" id=32]
-texture = ExtResource( 23 )
-region_rect = Rect2( 0, 0, 128, 128 )
-modulate_color = Color( 0.596078, 0.423529, 0.615686, 1 )
-
-[sub_resource type="StyleBoxTexture" id=33]
-texture = ExtResource( 23 )
-region_rect = Rect2( 0, 0, 128, 128 )
-
-[sub_resource type="DynamicFont" id=41]
-size = 96
-font_data = ExtResource( 29 )
-
-[sub_resource type="DynamicFont" id=42]
-size = 64
-font_data = ExtResource( 29 )
-
-[sub_resource type="DynamicFont" id=44]
-size = 64
-font_data = ExtResource( 29 )
-
-[sub_resource type="StyleBoxFlat" id=45]
-bg_color = Color( 0.168627, 0.168627, 0.168627, 0.843137 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id=46]
-bg_color = Color( 0.0117647, 0.0117647, 0.0117647, 0.843137 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id=47]
-bg_color = Color( 0.168627, 0.168627, 0.168627, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="DynamicFont" id=48]
-size = 64
-font_data = ExtResource( 29 )
-
-[sub_resource type="StyleBoxTexture" id=34]
-texture = ExtResource( 24 )
-region_rect = Rect2( 0, 0, 1280, 720 )
-
-[sub_resource type="StyleBoxFlat" id=36]
-bg_color = Color( 0.109804, 0.109804, 0.113725, 0.737255 )
-
-[sub_resource type="DynamicFont" id=43]
-size = 32
-font_data = ExtResource( 29 )
-
-[sub_resource type="StyleBoxFlat" id=49]
-bg_color = Color( 0.141176, 0.141176, 0.141176, 0.815686 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id=50]
-bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxTexture" id=37]
-texture = ExtResource( 28 )
-region_rect = Rect2( 0, 0, 225, 225 )
-modulate_color = Color( 0.65098, 0.117647, 0.117647, 1 )
-
-[sub_resource type="StyleBoxTexture" id=39]
-texture = ExtResource( 28 )
-region_rect = Rect2( 0, 0, 225, 225 )
-modulate_color = Color( 1, 0.403922, 0.403922, 1 )
-
-[sub_resource type="DynamicFont" id=40]
-size = 64
-font_data = ExtResource( 29 )
+tracks/11/type = "value"
+tracks/11/path = NodePath("LobbyMusic:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [node name="Node2D" type="Node2D"]
 __meta__ = {
@@ -1141,6 +1318,16 @@ tile_set = SubResource( 1 )
 cell_size = Vector2( 512, 512 )
 format = 1
 tile_data = PoolIntArray( -458763, 3, 0, -458762, 3, 0, -458761, 3, 0, -458760, 3, 0, -458759, 3, 0, -458758, 3, 0, -458757, 3, 0, -458756, 3, 0, -458755, 3, 0, -458754, 3, 0, -458753, 3, 0, -524288, 3, 0, -524287, 3, 0, -524286, 3, 0, -524285, 3, 0, -524284, 3, 0, -524283, 3, 0, -524282, 3, 0, -524281, 3, 0, -524280, 3, 0, -524279, 3, 0, -524278, 3, 0, -393227, 3, 0, -393226, 3, 0, -393225, 3, 0, -393224, 3, 0, -393223, 3, 0, -393222, 3, 0, -393221, 3, 0, -393220, 3, 0, -393219, 3, 0, -393218, 3, 0, -393217, 3, 0, -458752, 3, 0, -458751, 3, 0, -458750, 3, 0, -458749, 3, 0, -458748, 3, 0, -458747, 3, 0, -458746, 3, 0, -458745, 3, 0, -458744, 3, 0, -458743, 3, 0, -458742, 3, 0, -327691, 3, 0, -327690, 3, 0, -327689, 3, 0, -327688, 3, 0, -327687, 3, 0, -327686, 3, 0, -327685, 3, 0, -327684, 3, 0, -327683, 3, 0, -327682, 3, 0, -327681, 3, 0, -393216, 3, 0, -393215, 3, 0, -393214, 3, 0, -393213, 3, 0, -393212, 3, 0, -393211, 3, 0, -393210, 3, 0, -393209, 3, 0, -393208, 3, 0, -393207, 3, 0, -393206, 3, 0, -262155, 3, 0, -262154, 3, 0, -262153, 3, 0, -262152, 3, 0, -262151, 3, 0, -262150, 3, 0, -262149, 3, 0, -262148, 3, 0, -262147, 3, 0, -262146, 3, 0, -262145, 3, 0, -327680, 3, 0, -327679, 3, 0, -327678, 3, 0, -327677, 3, 0, -327676, 3, 0, -327675, 3, 0, -327674, 3, 0, -327673, 3, 0, -327672, 3, 0, -327671, 3, 0, -327670, 3, 0, -196619, 3, 0, -196618, 3, 0, -196617, 3, 0, -196616, 3, 0, -196615, 3, 0, -196614, 3, 0, -196613, 3, 0, -196612, 3, 0, -196611, 3, 0, -196610, 3, 0, -196609, 3, 0, -262144, 3, 0, -262143, 3, 0, -262142, 3, 0, -262141, 3, 0, -262140, 3, 0, -262139, 3, 0, -262138, 3, 0, -262137, 3, 0, -262136, 3, 0, -262135, 3, 0, -262134, 3, 0, -131083, 3, 0, -131082, 3, 0, -131081, 3, 0, -131080, 3, 0, -131079, 3, 0, -131078, 3, 0, -131077, 3, 0, -131076, 3, 0, -131075, 3, 0, -131074, 3, 0, -131073, 3, 0, -196608, 3, 0, -196607, 3, 0, -196606, 3, 0, -196605, 3, 0, -196604, 3, 0, -196603, 3, 0, -196602, 3, 0, -196601, 3, 0, -196600, 3, 0, -196599, 3, 0, -196598, 3, 0, -65547, 3, 0, -65546, 3, 0, -65545, 3, 0, -65544, 3, 0, -65543, 3, 0, -65542, 3, 0, -65541, 3, 0, -65540, 3, 0, -65539, 3, 0, -65538, 3, 0, -65537, 5, 0, -131072, 5, 0, -131071, 3, 0, -131070, 3, 0, -131069, 3, 0, -131068, 3, 0, -131067, 3, 0, -131066, 3, 0, -131065, 3, 0, -131064, 3, 0, -131063, 3, 0, -131062, 3, 0, -11, 3, 0, -10, 3, 0, -9, 3, 0, -8, 3, 0, -7, 3, 0, -6, 3, 0, -5, 3, 0, -4, 3, 0, -3, 3, 0, -2, 2, 0, -1, 1, 0, -65536, 1, 0, -65535, 4, 0, -65534, 3, 0, -65533, 3, 0, -65532, 3, 0, -65531, 3, 0, -65530, 3, 0, -65529, 3, 0, -65528, 3, 0, -65527, 3, 0, -65526, 3, 0, 65525, 3, 0, 65526, 3, 0, 65527, 3, 0, 65528, 3, 0, 65529, 3, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 2, 0, 65535, 1, 0, 0, 1, 0, 1, 4, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 131061, 3, 0, 131062, 3, 0, 131063, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 6, 0, 65536, 6, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 196597, 3, 0, 196598, 3, 0, 196599, 3, 0, 196600, 3, 0, 196601, 3, 0, 196602, 3, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0, 131082, 3, 0, 262133, 3, 0, 262134, 3, 0, 262135, 3, 0, 262136, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, 262141, 3, 0, 262142, 3, 0, 262143, 3, 0, 196608, 3, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 327669, 3, 0, 327670, 3, 0, 327671, 3, 0, 327672, 3, 0, 327673, 3, 0, 327674, 3, 0, 327675, 3, 0, 327676, 3, 0, 327677, 3, 0, 327678, 3, 0, 327679, 3, 0, 262144, 3, 0, 262145, 3, 0, 262146, 3, 0, 262147, 3, 0, 262148, 3, 0, 262149, 3, 0, 262150, 3, 0, 262151, 3, 0, 262152, 3, 0, 262153, 3, 0, 262154, 3, 0, 393205, 3, 0, 393206, 3, 0, 393207, 3, 0, 393208, 3, 0, 393209, 3, 0, 393210, 3, 0, 393211, 3, 0, 393212, 3, 0, 393213, 3, 0, 393214, 3, 0, 393215, 3, 0, 327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327687, 3, 0, 327688, 3, 0, 327689, 3, 0, 327690, 3, 0, 458741, 3, 0, 458742, 3, 0, 458743, 3, 0, 458744, 3, 0, 458745, 3, 0, 458746, 3, 0, 458747, 3, 0, 458748, 3, 0, 458749, 3, 0, 458750, 3, 0, 458751, 3, 0, 393216, 3, 0, 393217, 3, 0, 393218, 3, 0, 393219, 3, 0, 393220, 3, 0, 393221, 3, 0, 393222, 3, 0, 393223, 3, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 524277, 3, 0, 524278, 3, 0, 524279, 3, 0, 524280, 3, 0, 524281, 3, 0, 524282, 3, 0, 524283, 3, 0, 524284, 3, 0, 524285, 3, 0, 524286, 3, 0, 524287, 3, 0, 458752, 3, 0, 458753, 3, 0, 458754, 3, 0, 458755, 3, 0, 458756, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0, 458762, 3, 0, 589813, 3, 0, 589814, 3, 0, 589815, 3, 0, 589816, 3, 0, 589817, 3, 0, 589818, 3, 0, 589819, 3, 0, 589820, 3, 0, 589821, 3, 0, 589822, 3, 0, 589823, 3, 0, 524288, 3, 0, 524289, 3, 0, 524290, 3, 0, 524291, 3, 0, 524292, 3, 0, 524293, 3, 0, 524294, 3, 0, 524295, 3, 0, 524296, 3, 0, 524297, 3, 0, 524298, 3, 0, 655349, 3, 0, 655350, 3, 0, 655351, 3, 0, 655352, 3, 0, 655353, 3, 0, 655354, 3, 0, 655355, 3, 0, 655356, 3, 0, 655357, 3, 0, 655358, 3, 0, 655359, 3, 0, 589824, 3, 0, 589825, 3, 0, 589826, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 589830, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589834, 3, 0, 720885, 3, 0, 720886, 3, 0, 720887, 3, 0, 720888, 3, 0, 720889, 3, 0, 720890, 3, 0, 720891, 3, 0, 720892, 3, 0, 720893, 3, 0, 720894, 3, 0, 720895, 3, 0, 655360, 3, 0, 655361, 3, 0, 655362, 3, 0, 655363, 3, 0, 655364, 3, 0, 655365, 3, 0, 655366, 3, 0, 655367, 3, 0, 655368, 3, 0, 655369, 3, 0, 655370, 3, 0 )
+
+[node name="BGMusic1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 53 )
+volume_db = -10.0
+bus = "Music"
+
+[node name="BGMusic2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 54 )
+volume_db = -10.0
+bus = "Music"
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -1190,14 +1377,17 @@ texture = ExtResource( 10 )
 [node name="GlassBreak1" type="AudioStreamPlayer" parent="YSort/Tower"]
 stream = ExtResource( 42 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="GlassBreak2" type="AudioStreamPlayer" parent="YSort/Tower"]
 stream = ExtResource( 43 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="GlassBreak3" type="AudioStreamPlayer" parent="YSort/Tower"]
 stream = ExtResource( 44 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="Player" type="KinematicBody2D" parent="YSort" groups=["Player"]]
 collision_layer = 2
@@ -1258,21 +1448,39 @@ playback_speed = 0.5
 anims/Attacking = SubResource( 19 )
 anims/RESET = SubResource( 20 )
 
+[node name="Appear" type="Particles2D" parent="YSort/Player/Character0"]
+position = Vector2( 0, 19 )
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource( 53 )
+texture = ExtResource( 10 )
+
 [node name="Attack1" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
 stream = ExtResource( 38 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="Attack2" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
 stream = ExtResource( 40 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="Attack3" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
 stream = ExtResource( 39 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="Attack4" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
 stream = ExtResource( 41 )
 volume_db = -10.0
+bus = "SFX"
+
+[node name="Skill" type="AudioStreamPlayer" parent="YSort/Player/Character0"]
+stream = ExtResource( 51 )
+volume_db = -5.0
+bus = "SFX"
 
 [node name="Collision" type="CollisionShape2D" parent="YSort/Player"]
 position = Vector2( -0.5, 1.5 )
@@ -1303,15 +1511,58 @@ collision_layer = 3
 polygon = PoolVector2Array( -1801, 2717, 1759, 2752, 1771, 3053, -1825, 2997, -2097, 2997, -2081, 2709, -2049, -51, -2057, -395, -1761, -387, 1743, -393, 2234, -386, 2220, -90, 2209, 2767, 2235, 3059, 1803, 3059, 1759, 2724, 1736, -76, -1739, -49 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2( 0.4, 0.4 )
+transform = Transform2D( 0.4, 0, 0, 0.4, 0, 0 )
 
-[node name="TextureProgress" type="TextureProgress" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="TowerHp" type="TextureProgress" parent="UI"]
+margin_left = 1120.0
+margin_top = 2.0
+margin_right = 2144.0
+margin_bottom = 258.0
+value = 50.0
+texture_under = ExtResource( 47 )
+texture_progress = ExtResource( 48 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillCD" type="TextureProgress" parent="UI"]
+margin_left = 2900.0
+margin_top = 1427.5
+margin_right = 3167.0
+margin_bottom = 1694.5
+value = 50.0
+texture_under = ExtResource( 50 )
+texture_progress = ExtResource( 49 )
+fill_mode = 2
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CD_text" type="Label" parent="UI/SkillCD"]
+margin_right = 268.0
+margin_bottom = 265.0
+custom_fonts/font = SubResource( 51 )
+text = "9.9"
+align = 1
+valign = 1
+
+[node name="Shift" type="Label" parent="UI/SkillCD"]
+margin_top = 225.0
+margin_right = 268.0
+margin_bottom = 330.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
+text = "Shift"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]
+layer = 2
 script = ExtResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="DeathScreen"]
@@ -1326,13 +1577,8 @@ position = Vector2( -796, 357 )
 scale = Vector2( -3, 3 )
 texture = ExtResource( 19 )
 
-[node name="DeathScreenAnim" type="AnimationPlayer" parent="DeathScreen"]
-playback_speed = 1.5
-anims/ChangeShopArmory = SubResource( 35 )
-anims/DeathScreenClose = SubResource( 24 )
-anims/RESET = SubResource( 25 )
-
 [node name="Lobby" type="CanvasLayer" parent="DeathScreen"]
+layer = 2
 
 [node name="Panel" type="Panel" parent="DeathScreen/Lobby"]
 visible = false
@@ -1371,6 +1617,7 @@ action_mode = 0
 enabled_focus_mode = 0
 
 [node name="Characters" type="Panel" parent="DeathScreen/Lobby/Panel"]
+visible = false
 margin_left = 264.0
 margin_top = 266.0
 margin_right = 492.0
@@ -1383,6 +1630,7 @@ __meta__ = {
 }
 
 [node name="SummonButton" type="Button" parent="DeathScreen/Lobby/Panel/Characters"]
+visible = false
 margin_left = 1.0
 margin_top = 15.0
 margin_right = 223.0
@@ -1392,6 +1640,7 @@ focus_mode = 0
 custom_styles/hover = SubResource( 31 )
 custom_styles/pressed = SubResource( 32 )
 custom_styles/normal = SubResource( 33 )
+disabled = true
 action_mode = 0
 enabled_focus_mode = 0
 __meta__ = {
@@ -1530,13 +1779,17 @@ margin_left = 89.254
 margin_top = 102.218
 margin_right = 161.254
 margin_bottom = 147.218
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 0.0196078, 0.0196078, 0.45098 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
 custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/hover = SubResource( 49 )
 custom_styles/pressed = SubResource( 50 )
+custom_styles/disabled = SubResource( 58 )
 custom_styles/normal = SubResource( 50 )
+enabled_focus_mode = 0
 text = "Buy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1547,18 +1800,36 @@ position = Vector2( 37, -42 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 33 )
 
+[node name="Cost" type="Label" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyAtkSpd"]
+margin_left = -3.0
+margin_top = 57.0002
+margin_right = 77.0
+margin_bottom = 96.0002
+custom_colors/font_color = Color( 0.960784, 0.745098, 0.239216, 1 )
+custom_fonts/font = SubResource( 59 )
+text = "999¢"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BuyDmg" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
 margin_left = 237.254
 margin_top = 102.218
 margin_right = 309.254
 margin_bottom = 147.218
+rect_pivot_offset = Vector2( -46, 45.0002 )
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 0.0196078, 0.0196078, 0.45098 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
 custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/hover = SubResource( 49 )
 custom_styles/pressed = SubResource( 50 )
+custom_styles/disabled = SubResource( 58 )
 custom_styles/normal = SubResource( 50 )
+enabled_focus_mode = 0
 text = "Buy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1569,18 +1840,35 @@ position = Vector2( 37, -42 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 34 )
 
+[node name="Cost" type="Label" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyDmg"]
+margin_left = -3.0
+margin_top = 57.0002
+margin_right = 77.0
+margin_bottom = 96.0002
+custom_colors/font_color = Color( 0.960784, 0.745098, 0.239216, 1 )
+custom_fonts/font = SubResource( 59 )
+text = "999¢"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BuySkillCd" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
 margin_left = 392.254
 margin_top = 102.218
 margin_right = 464.254
 margin_bottom = 147.218
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 0.0196078, 0.0196078, 0.45098 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
 custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/hover = SubResource( 49 )
 custom_styles/pressed = SubResource( 50 )
+custom_styles/disabled = SubResource( 58 )
 custom_styles/normal = SubResource( 50 )
+enabled_focus_mode = 0
 text = "Buy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1591,18 +1879,35 @@ position = Vector2( 37, -42 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 31 )
 
+[node name="Cost" type="Label" parent="DeathScreen/Lobby/Armory/BuyMenu/BuySkillCd"]
+margin_left = -3.0
+margin_top = 57.0002
+margin_right = 77.0
+margin_bottom = 96.0002
+custom_colors/font_color = Color( 0.960784, 0.745098, 0.239216, 1 )
+custom_fonts/font = SubResource( 59 )
+text = "999¢"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BuyMvnSpd" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
 margin_left = 84.254
-margin_top = 271.218
+margin_top = 291.218
 margin_right = 156.254
-margin_bottom = 316.218
+margin_bottom = 336.218
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 0.0196078, 0.0196078, 0.45098 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
 custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/hover = SubResource( 49 )
 custom_styles/pressed = SubResource( 50 )
+custom_styles/disabled = SubResource( 58 )
 custom_styles/normal = SubResource( 50 )
+enabled_focus_mode = 0
 text = "Buy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1613,18 +1918,35 @@ position = Vector2( 37, -33.3998 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 35 )
 
+[node name="Cost" type="Label" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyMvnSpd"]
+margin_left = -3.0
+margin_top = 57.0002
+margin_right = 77.0
+margin_bottom = 96.0002
+custom_colors/font_color = Color( 0.960784, 0.745098, 0.239216, 1 )
+custom_fonts/font = SubResource( 59 )
+text = "999¢"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BuyMnyMult" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
 margin_left = 238.254
-margin_top = 271.218
+margin_top = 291.218
 margin_right = 310.254
-margin_bottom = 316.218
+margin_bottom = 336.218
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 0.0196078, 0.0196078, 0.45098 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
 custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/hover = SubResource( 49 )
 custom_styles/pressed = SubResource( 50 )
+custom_styles/disabled = SubResource( 58 )
 custom_styles/normal = SubResource( 50 )
+enabled_focus_mode = 0
 text = "Buy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1635,18 +1957,35 @@ position = Vector2( 37, -33.3998 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 37 )
 
+[node name="Cost" type="Label" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyMnyMult"]
+margin_left = -3.0
+margin_top = 57.0002
+margin_right = 77.0
+margin_bottom = 96.0002
+custom_colors/font_color = Color( 0.960784, 0.745098, 0.239216, 1 )
+custom_fonts/font = SubResource( 59 )
+text = "999¢"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BuyTwrHp" type="Button" parent="DeathScreen/Lobby/Armory/BuyMenu"]
 margin_left = 389.254
-margin_top = 271.218
+margin_top = 291.218
 margin_right = 461.254
-margin_bottom = 316.218
+margin_bottom = 336.218
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 0.0196078, 0.0196078, 0.45098 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0.898039, 0.678431, 1 )
 custom_colors/font_color_pressed = Color( 0.898039, 0.717647, 0.309804, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/hover = SubResource( 49 )
 custom_styles/pressed = SubResource( 50 )
+custom_styles/disabled = SubResource( 58 )
 custom_styles/normal = SubResource( 50 )
+enabled_focus_mode = 0
 text = "Buy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1656,6 +1995,19 @@ __meta__ = {
 position = Vector2( 37, -41.9998 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 36 )
+
+[node name="Cost" type="Label" parent="DeathScreen/Lobby/Armory/BuyMenu/BuyTwrHp"]
+margin_left = -3.0
+margin_top = 57.0002
+margin_right = 77.0
+margin_bottom = 96.0002
+custom_colors/font_color = Color( 0.960784, 0.745098, 0.239216, 1 )
+custom_fonts/font = SubResource( 59 )
+text = "999¢"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Back" type="Button" parent="DeathScreen/Lobby/Armory"]
 margin_left = 39.036
@@ -1704,13 +2056,34 @@ scale = Vector2( 2.51563, 2.51563 )
 texture = ExtResource( 32 )
 offset = Vector2( 155.826, -301.714 )
 
+[node name="DeathScreenAnim" type="AnimationPlayer" parent="DeathScreen"]
+playback_speed = 1.5
+anims/ChangeShopArmory = SubResource( 35 )
+anims/DeathScreenClose = SubResource( 24 )
+anims/RESET = SubResource( 25 )
+
 [node name="DoorImpact" type="AudioStreamPlayer" parent="DeathScreen"]
 stream = ExtResource( 45 )
 volume_db = -7.0
+bus = "SFX"
+
+[node name="LobbyMusic" type="AudioStreamPlayer" parent="DeathScreen"]
+stream = ExtResource( 52 )
+volume_db = -7.0
+bus = "Music"
 
 [node name="DoorTension" type="AudioStreamPlayer" parent="DeathScreen"]
 stream = ExtResource( 46 )
 volume_db = -7.0
+bus = "SFX"
+
+[node name="Click" type="AudioStreamPlayer" parent="DeathScreen"]
+stream = ExtResource( 55 )
+bus = "SFX"
+
+[node name="Click2" type="AudioStreamPlayer" parent="DeathScreen"]
+stream = ExtResource( 56 )
+bus = "SFX"
 
 [node name="Save" parent="." instance=ExtResource( 30 )]
 
@@ -1721,6 +2094,8 @@ volume_db = -7.0
 [connection signal="timeout" from="YSort/Player/Character0/SkillCD" to="YSort/Player/Character0" method="_on_SkillCD_timeout"]
 [connection signal="timeout" from="YSort/Player/Character0/AttackCD" to="YSort/Player/Character0" method="_on_AttackCD_timeout"]
 [connection signal="pressed" from="DeathScreen/Lobby/Panel/Upgrades/UpgradeButton" to="DeathScreen" method="_on_UpgradeButton_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Panel/Retry" to="DeathScreen" method="_on_Retry_pressed"]
+[connection signal="pressed" from="DeathScreen/Lobby/Panel/Menu" to="DeathScreen" method="_on_Menu_pressed"]
 [connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyAtkSpd" to="DeathScreen" method="_on_BuyAtkSpd_pressed"]
 [connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuyDmg" to="DeathScreen" method="_on_BuyDmg_pressed"]
 [connection signal="pressed" from="DeathScreen/Lobby/Armory/BuyMenu/BuySkillCd" to="DeathScreen" method="_on_BuySkillCd_pressed"]

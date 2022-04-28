@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Training in the Fire.mp3-8a2d0597d9fe8f24597e3a770c90a13a.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Training in the Fire.mp3"
+dest_files=[ "res://.import/Twin Musicom - Training in the Fire.mp3-8a2d0597d9fe8f24597e3a770c90a13a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -66,6 +66,7 @@ func add_kill():
 func stop():
 	if attacking:
 		anim.play("RESET")
+		anim.play("Drain")
 
 func _on_Damagedetect_body_entered(body):
 	if (body.is_in_group("Player")):

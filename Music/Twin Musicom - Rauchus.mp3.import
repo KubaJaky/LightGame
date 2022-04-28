@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Rauchus.mp3-9e53a7d078cb4921eaa5c1999f19ddab.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Rauchus.mp3"
+dest_files=[ "res://.import/Twin Musicom - Rauchus.mp3-9e53a7d078cb4921eaa5c1999f19ddab.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

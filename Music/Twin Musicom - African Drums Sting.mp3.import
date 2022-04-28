@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - African Drums Sting.mp3-a48b1982c46b991ba4f5e38898e43f95.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - African Drums Sting.mp3"
+dest_files=[ "res://.import/Twin Musicom - African Drums Sting.mp3-a48b1982c46b991ba4f5e38898e43f95.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

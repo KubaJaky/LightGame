@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Marxist Arrow.mp3-4cb31bb32f74d4688e23101f7c63b6ba.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Marxist Arrow.mp3"
+dest_files=[ "res://.import/Twin Musicom - Marxist Arrow.mp3-4cb31bb32f74d4688e23101f7c63b6ba.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
